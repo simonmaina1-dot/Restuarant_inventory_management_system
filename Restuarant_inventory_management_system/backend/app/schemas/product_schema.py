@@ -1,0 +1,3 @@
+# Product schema
+pass
+

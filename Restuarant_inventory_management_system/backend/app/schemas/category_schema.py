@@ -1,0 +1,3 @@
+# Category schema
+pass
+
