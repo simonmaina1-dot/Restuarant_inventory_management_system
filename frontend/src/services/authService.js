@@ -1,20 +1,18 @@
 // Auth service
-import axios from 'axios';
+import api from './api';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+export const loginUser = async (email, password) => {
+  const res = await api.post('/auth/login', { email, password });
+  localStorage.setItem('token', res.data.token);
+  localStorage.setItem('user', JSON.stringify(res.data.user));
+  return res.data;
+};
 
-const api = axios.create({
-  baseURL: API_BASE,
-  headers: { 'Content-Type': 'application/json' },
-});
+export const logoutUser = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+};
 
-// Add token to every request automatically
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
-});
-
-export default api;
+export const isAuthenticated = () => !!localStorage.getItem('token');
 
 
