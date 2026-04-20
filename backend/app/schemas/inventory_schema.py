@@ -1,0 +1,3 @@
+# Inventory schema
+pass
+

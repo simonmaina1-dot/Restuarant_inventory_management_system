@@ -1,0 +1,2 @@
+// InventoryTable component
+
