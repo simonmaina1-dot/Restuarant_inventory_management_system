@@ -1,3 +1,2 @@
 # Inventory model
-pass
 
