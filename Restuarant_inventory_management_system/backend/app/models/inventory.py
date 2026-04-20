@@ -1,6 +1,7 @@
 from app.extensions import db
 from datetime import datetime
 
+# Inventory model
 class Inventory(db.Model):
     __tablename__ = 'inventory'
     
