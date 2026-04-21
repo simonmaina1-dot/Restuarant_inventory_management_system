@@ -6,7 +6,7 @@ class Inventory(db.Model):
     __tablename__ = 'inventory'
     
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     quantity = db.Column(db.Float, default=0.0, nullable=False)
     unit_price = db.Column(db.Float, nullable=False)
     reorder_level = db.Column(db.Float, default=0.0)
