@@ -1,2 +1,0 @@
-// OrderTable component
-

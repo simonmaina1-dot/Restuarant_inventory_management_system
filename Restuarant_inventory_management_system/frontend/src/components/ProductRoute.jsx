@@ -1,2 +1,0 @@
-// ProductRoute component
-
