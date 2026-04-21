@@ -6,16 +6,13 @@ class Inventory(db.Model):
     __tablename__ = 'inventory'
     
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     quantity = db.Column(db.Float, default=0.0, nullable=False)
     unit_price = db.Column(db.Float, nullable=False)
     reorder_level = db.Column(db.Float, default=0.0)
     location = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
-    # Relationships
-    product = db.relationship('Product', backref='inventory', lazy=True)
     
     def __repr__(self):
         return f'<Inventory {self.id} - {self.product.name if self.product else "No Product"}>'
