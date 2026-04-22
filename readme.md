@@ -205,19 +205,18 @@ Frontend
 cd frontend
 npm install
 npm run dev
-🔄 How It Works
+## How It Works
 User logs in → receives JWT
 Requests include token
 Backend validates & processes
 Orders deduct inventory
 UI updates automatically
-📸 Screenshots (Add for Higher Marks)
 Login Page
 Dashboard
 Products Page
 Inventory Page
 Orders Page
-📈 Evaluation Alignment
+## Evaluation Alignment
 
 ✔ RESTful API design with consistent responses
 ✔ Clean project structure (Flask Blueprints)
@@ -235,6 +234,6 @@ Order processing
 
 DineFlow simulates a real restaurant system while remaining simple and efficient.
 
-🧠 Conclusion
+## Conclusion
 
 DineFlow is a practical, real-world full-stack application that demonstrates backend development, API design, database management, and frontend integration — all in a clean, scalable structure optimized for fast development and high grading performance.
