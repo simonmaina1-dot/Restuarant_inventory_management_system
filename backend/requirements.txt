@@ -1,10 +1,15 @@
+>>>>>>> origin/donald
+=======
 Flask==3.0.3
+Flask-Cors==5.0.0
 Flask-SQLAlchemy==3.1.1
 Flask-Migrate==4.0.7
-Flask-Marshmallow==0.5.0
+Flask-Marshmallow==1.2.1
 Flask-JWT-Extended==4.6.0
+marshmallow==3.21.3
 marshmallow-sqlalchemy==1.0.0
 Werkzeug==3.0.3
 python-dotenv==1.0.0
-Flask-CORS==5.0.0
 
+=======
+>>>>>>> origin/donald

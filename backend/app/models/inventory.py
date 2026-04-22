@@ -14,9 +14,6 @@ class Inventory(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    # Relationships
-    product = db.relationship('Product', backref='inventory', lazy=True)
-    
     def __repr__(self):
         return f'<Inventory {self.id} - {self.product.name if self.product else "No Product"}>'
     
