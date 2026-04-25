@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/sanchez/module_5/Restuarant_Inventory_management_syatem/Restuarant_inventory_management_system/backend/venv
+set -gx VIRTUAL_ENV /home/sanchez/module_5/Restuarant_Inventory_management_syatem/backend/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

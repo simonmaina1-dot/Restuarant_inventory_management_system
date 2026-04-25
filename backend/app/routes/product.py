@@ -6,7 +6,7 @@ from app.models.category import Category
 from app.models.supplier import Supplier
 from app.models.inventory import Inventory
 
-product_bp = Blueprint('product', __name__, url_prefix='/api/products')
+product_bp = Blueprint('product', __name__)
 
 @product_bp.route('/', methods=['GET'])
 @jwt_required()
@@ -107,4 +107,15 @@ def get_available_products():
     # Products with inventory quantity > 0
     products = Product.query.join(Inventory).filter(Inventory.quantity > 0).all()
     return jsonify([product.to_dict() for product in products])
+
+@product_bp.route('/categories', methods=['GET'])
+@jwt_required()
+def get_categories():
+    categories = Category.query.all()
+    return jsonify([{
+        'id': cat.id,
+        'name': cat.name,
+        'description': cat.description,
+        'items': len(cat.products)
+    } for cat in categories])
 

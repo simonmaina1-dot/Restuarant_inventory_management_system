@@ -7,7 +7,7 @@ from app.models.inventory import Inventory
 from app.models.product import Product
 from app.models.users import User
 
-order_bp = Blueprint('order', __name__, url_prefix='/api/orders')
+order_bp = Blueprint('order', __name__)
 
 @order_bp.route('/', methods=['GET'])
 @jwt_required()

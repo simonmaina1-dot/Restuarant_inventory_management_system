@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' /home/sanchez/module_5/Restuarant_Inventory_management_syatem/Restuarant_inventory_management_system/backend/venv/bin/python3 "$0" "$@"
-' '''
+#!/home/sanchez/module_5/Restuarant_Inventory_management_syatem/backend/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

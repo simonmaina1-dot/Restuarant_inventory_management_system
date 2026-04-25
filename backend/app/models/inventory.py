@@ -27,5 +27,7 @@ class Inventory(db.Model):
             'location': self.location,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
-            'product': self.product.to_dict() if self.product else None
+            'product': self.product.to_dict() if self.product else None,
+            'product_name': self.product.name if self.product else f'Product {self.product_id}',
+            'supplier_name': self.product.supplier.name if self.product and hasattr(self.product, 'supplier') and self.product.supplier else 'No supplier'
         }

@@ -31,9 +31,9 @@ export default function Orders() {
     return <div className="rounded-[28px] bg-rose-50 p-8 text-sm text-rose-700 shadow-sm">{error}</div>;
   }
 
-  const preparingCount = orders.filter((order) => order.status === 'Pending').length;
-  const readyCount = orders.filter((order) => order.status === 'Cancelled').length;
-  const completedCount = orders.filter((order) => order.status === 'Completed').length;
+  const preparingCount = orders.filter((order) => order.status === 'pending').length;
+  const readyCount = orders.filter((order) => order.status === 'cancelled').length;
+  const completedCount = orders.filter((order) => order.status === 'completed').length;
 
   return (
     <div className="space-y-8">

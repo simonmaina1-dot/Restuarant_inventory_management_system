@@ -21,12 +21,15 @@ class Product(db.Model):
         return f'<Product {self.name}>'
 
     def to_dict(self):
+        inventory_item = self.inventory[0] if self.inventory else None
         return {
             'id': self.id,
             'name': self.name,
             'price': self.price,
             'category_id': self.category_id,
             'supplier_id': self.supplier_id,
+            'stock': inventory_item.quantity if inventory_item else 0,
+            'category': self.category.to_dict() if self.category else None,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }

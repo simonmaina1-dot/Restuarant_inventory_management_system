@@ -31,7 +31,7 @@ export default function Inventory() {
     return <div className="rounded-[28px] bg-rose-50 p-8 text-sm text-rose-700 shadow-sm">{error}</div>;
   }
 
-  const lowStockItems = inventoryItems.filter((item) => item.stock <= item.reorder_level);
+  const lowStockItems = inventoryItems.filter((item) => (item.quantity || 0) <= (item.reorder_level || 0));
 
   return (
     <div className="space-y-8">
@@ -56,11 +56,11 @@ export default function Inventory() {
         </article>
         <article className="rounded-[28px] border border-stone-200 bg-white p-6 shadow-sm">
           <p className="text-sm text-slate-500">Main supplier on page</p>
-          <p className="mt-3 text-2xl font-semibold text-slate-900">{inventoryItems[0]?.supplier || 'No supplier'}</p>
+          <p className="mt-3 text-2xl font-semibold text-slate-900">{inventoryItems[0]?.product?.supplier?.name || 'No supplier'}</p>
         </article>
         <article className="rounded-[28px] border border-stone-200 bg-white p-6 shadow-sm">
           <p className="text-sm text-slate-500">Most at risk</p>
-          <p className="mt-3 text-2xl font-semibold text-slate-900">{lowStockItems[0]?.name || 'All good'}</p>
+          <p className="mt-3 text-2xl font-semibold text-slate-900">{lowStockItems[0]?.product?.name || 'All good'}</p>
         </article>
       </section>
 

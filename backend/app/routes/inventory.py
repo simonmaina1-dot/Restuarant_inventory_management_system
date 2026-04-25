@@ -4,7 +4,7 @@ from app.extensions import db
 from app.models.inventory import Inventory
 from app.models.product import Product
 
-inventory_bp = Blueprint('inventory', __name__, url_prefix='/api/inventory')
+inventory_bp = Blueprint('inventory', __name__)
 
 @inventory_bp.route('/', methods=['GET'])
 @jwt_required()

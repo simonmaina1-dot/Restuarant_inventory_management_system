@@ -26,6 +26,7 @@ class Order(db.Model):
             'order_date': self.order_date.isoformat() if self.order_date else None,
             'status': self.status,
             'total_amount': self.total_amount,
+            'customer_name': self.user.username if self.user else f'User {self.user_id}',
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }
