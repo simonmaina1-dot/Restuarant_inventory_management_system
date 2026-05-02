@@ -15,6 +15,12 @@ class User(db.Model):
     # Relationships
     orders = db.relationship('Order', backref='user', lazy=True)
 
+    def __init__(self, username=None, password_hash=None, role=None, **kwargs):
+        super().__init__(**kwargs)
+        self.username = username
+        self.password_hash = password_hash
+        self.role = role
+
     def __repr__(self):
         return f'<User {self.username}>'
 

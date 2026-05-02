@@ -7,6 +7,7 @@ import Inventory from './pages/inventory';
 import Orders from './pages/orders';
 import Product from './pages/product';
 import Categories from './pages/categories';
+import Suppliers from './pages/suppliers';
 import heroImage from './../images/jay-wennington-N_Y88TWmGwA-unsplash.jpg';
 
 const HeroBanner = () => (
@@ -67,7 +68,7 @@ function App() {
           <Route path="/inventory" element={<ProtectedRoute><Inventory /></ProtectedRoute>} />
           <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
           <Route path="/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
-          <Route path="/suppliers" element={<ProtectedRoute><div className="p-8 text-slate-400">Suppliers page coming soon. Manage supplier relationships and deliveries here.</div></ProtectedRoute>} />
+          <Route path="/suppliers" element={<ProtectedRoute><Suppliers /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

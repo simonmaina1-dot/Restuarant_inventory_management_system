@@ -1,5 +1,11 @@
 from app.extensions import db
 from datetime import datetime
+from typing import TYPE_CHECKING
+
+from sqlalchemy.orm import Mapped
+
+if TYPE_CHECKING:
+    from app.models.product import Product
 
 # Inventory model
 class Inventory(db.Model):
@@ -14,6 +20,17 @@ class Inventory(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
+    # Explicit relationship for type checking
+    product: Mapped["Product"] = db.relationship("Product", back_populates="inventory", lazy=True)
+    
+    def __init__(self, product_id=None, quantity=None, unit_price=None, reorder_level=0.0, location=None, **kwargs):
+        super().__init__(**kwargs)
+        self.product_id = product_id
+        self.quantity = quantity
+        self.unit_price = unit_price
+        self.reorder_level = reorder_level
+        self.location = location
+
     def __repr__(self):
         return f'<Inventory {self.id} - {self.product.name if self.product else "No Product"}>'
     
@@ -21,9 +38,9 @@ class Inventory(db.Model):
         return {
             'id': self.id,
             'product_id': self.product_id,
-            'quantity': float(self.quantity),
-            'unit_price': float(self.unit_price),
-            'reorder_level': float(self.reorder_level),
+            'quantity': float(self.quantity or 0.0),
+            'unit_price': float(self.unit_price or 0.0),
+            'reorder_level': float(self.reorder_level or 0.0),
             'location': self.location,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,

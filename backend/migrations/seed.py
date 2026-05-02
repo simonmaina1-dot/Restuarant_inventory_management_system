@@ -52,23 +52,23 @@ SEED_SUPPLIERS = [
 ]
 
 SEED_PRODUCTS = [
-    {"name": "Garlic Bread", "price": 5.99, "category_id": 1, "supplier_id": 1},
-    {"name": "Caesar Salad", "price": 8.99, "category_id": 1, "supplier_id": 1},
-    {"name": "Grilled Salmon", "price": 18.99, "category_id": 2, "supplier_id": 2},
-    {"name": "Beef Burger", "price": 14.99, "category_id": 2, "supplier_id": 1},
-    {"name": "Chocolate Cake", "price": 6.99, "category_id": 3, "supplier_id": 3},
-    {"name": "Coca Cola", "price": 2.50, "category_id": 4, "supplier_id": 1},
-    {"name": "Tomato Salad", "price": 7.49, "category_id": 5, "supplier_id": 4},
-    {"name": "Grilled Shrimp", "price": 22.99, "category_id": 6, "supplier_id": 2},
-    {"name": "Veggie Stir Fry", "price": 12.99, "category_id": 7, "supplier_id": 6},
-    {"name": "Pasta Carbonara", "price": 16.99, "category_id": 2, "supplier_id": 5},
-    {"name": "Steak", "price": 28.99, "category_id": 2, "supplier_id": 4},
-    {"name": "Ice Cream", "price": 4.99, "category_id": 3, "supplier_id": 7},
-    {"name": "Lemonade", "price": 3.25, "category_id": 4, "supplier_id": 8},
-    {"name": "Quinoa Bowl", "price": 11.99, "category_id": 7, "supplier_id": 5},
-    {"name": "Lobster Tail", "price": 39.99, "category_id": 6, "supplier_id": 2},
-    {"name": "Cheese Pizza", "price": 13.99, "category_id": 2, "supplier_id": 1},
-    {"name": "Apple Pie", "price": 5.49, "category_id": 3, "supplier_id": 3},
+    {"name": "Garlic Bread", "price": 5.99, "image": "garlic bread.jpg", "category_id": 1, "supplier_id": 1},
+    {"name": "Caesar Salad", "price": 8.99, "image": "caesar salad.jpg", "category_id": 1, "supplier_id": 1},
+    {"name": "Grilled Salmon", "price": 18.99, "image": "grilled salmon.jpg", "category_id": 2, "supplier_id": 2},
+    {"name": "Beef Burger", "price": 14.99, "image": "beef burger.jpg", "category_id": 2, "supplier_id": 1},
+    {"name": "Chocolate Cake", "price": 6.99, "image": "chocolate cake.jpg", "category_id": 3, "supplier_id": 3},
+    {"name": "Coca Cola", "price": 2.50, "image": "coca cola.jpg", "category_id": 4, "supplier_id": 1},
+    {"name": "Tomato Salad", "price": 7.49, "image": "tomato salad.jpg", "category_id": 5, "supplier_id": 4},
+    {"name": "Grilled Shrimp", "price": 22.99, "image": "grilled shrimp.jpg", "category_id": 6, "supplier_id": 2},
+    {"name": "Veggie Stir Fry", "price": 12.99, "image": "veggie stir fry.jpg", "category_id": 7, "supplier_id": 6},
+    {"name": "Pasta Carbonara", "price": 16.99, "image": "pasta carbonara.jpg", "category_id": 2, "supplier_id": 5},
+    {"name": "Steak", "price": 28.99, "image": "steak.jpg", "category_id": 2, "supplier_id": 4},
+    {"name": "Ice Cream", "price": 4.99, "image": "ice cream.jpg", "category_id": 3, "supplier_id": 7},
+    {"name": "Lemonade", "price": 3.25, "image": "lemonade.jpg", "category_id": 4, "supplier_id": 8},
+    {"name": "Quinoa Bowl", "price": 11.99, "image": "quinoa bowl.jpg", "category_id": 7, "supplier_id": 5},
+    {"name": "Lobster Tail", "price": 39.99, "image": "lobster tail.jpg", "category_id": 6, "supplier_id": 2},
+    {"name": "Cheese Pizza", "price": 13.99, "image": "cheese pizza.jpg", "category_id": 2, "supplier_id": 1},
+    {"name": "Apple Pie", "price": 5.49, "image": "apple pie.jpg", "category_id": 3, "supplier_id": 3},
 ]
 
 SEED_INVENTORY = [
@@ -162,7 +162,7 @@ def seed():
                 name=s["name"],
                 contact_email=s["contact_email"],
                 phone=s["phone"],
-            )
+)
             db.session.add(sup)
         db.session.flush()
 
@@ -171,6 +171,7 @@ def seed():
             prod = Product(
                 name=p["name"],
                 price=p["price"],
+                image=p.get("image"),
                 category_id=p["category_id"],
                 supplier_id=p["supplier_id"],
             )
@@ -191,7 +192,7 @@ def seed():
 
         print("Seeding orders...")
         order_map = {}
-        for o in SEED_ORDERS:
+        for idx, o in enumerate(SEED_ORDERS, start=1):
             order = Order(
                 user_id=o[0],
                 order_date=datetime.strptime(o[1], "%Y-%m-%d %H:%M:%S"),
@@ -200,12 +201,12 @@ def seed():
             )
             db.session.add(order)
             db.session.flush()
-            order_map[o] = order.id
+            order_map[idx] = order.id
 
         print("Seeding order items...")
         for oi in SEED_ORDER_ITEMS:
             item = OrderItem(
-                order_id=oi[0],
+                order_id=order_map[oi[0]],
                 product_id=oi[1],
                 quantity=oi[2],
                 unit_price=oi[3],
@@ -222,4 +223,3 @@ def seed():
 
 if __name__ == "__main__":
     seed()
-

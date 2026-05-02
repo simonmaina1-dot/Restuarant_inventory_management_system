@@ -46,4 +46,11 @@ def create_app():
     from .routes.supplier import supplier_bp
     app.register_blueprint(supplier_bp, url_prefix='/api/suppliers')
     
+    from .routes.categories import categories_bp
+    app.register_blueprint(categories_bp, url_prefix='/api/categories')
+    
+    # Register custom error handlers
+    from .utils.error_handler import register_error_handlers
+    register_error_handlers(app)
+    
     return app

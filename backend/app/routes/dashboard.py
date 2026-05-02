@@ -2,6 +2,7 @@ from datetime import datetime
 
 from flask import Blueprint, jsonify
 from sqlalchemy import func
+from flask_jwt_extended import jwt_required
 
 from app.extensions import db
 from app.models.inventory import Inventory
@@ -12,6 +13,7 @@ dashboard_bp = Blueprint('dashboard', __name__)
 
 
 @dashboard_bp.get('/summary')
+@jwt_required()
 def get_dashboard_summary():
     total_products = db.session.query(func.count(Product.id)).scalar() or 0
     total_orders = db.session.query(func.count(Order.id)).scalar() or 0

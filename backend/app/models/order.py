@@ -28,5 +28,6 @@ class Order(db.Model):
             'total_amount': self.total_amount,
             'customer_name': self.user.username if self.user else f'User {self.user_id}',
             'created_at': self.created_at.isoformat() if self.created_at else None,
-            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'order_items': [item.to_dict() for item in self.order_items] if self.order_items else []
         }

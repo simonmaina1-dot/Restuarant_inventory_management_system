@@ -7,13 +7,23 @@ const ProductCard = ({ product }) => {
       ? 'bg-yellow-100 text-yellow-800'
       : 'bg-red-100 text-red-800';
 
+  const productImage = product.image ? `/images/${product.image}` : null;
+
   return (
     <div className="bg-white p-6 rounded-lg shadow border hover:shadow-md transition">
-      <div className="h-32 bg-gray-100 rounded flex items-center justify-center mb-4">
-        <span className="text-3xl font-bold text-slate-400">
-          {product.name.charAt(0)}
-        </span>
-      </div>
+      {productImage ? (
+        <img 
+          src={productImage} 
+          alt={product.name}
+          className="h-32 w-full object-cover rounded mb-4"
+        />
+      ) : (
+        <div className="h-32 bg-gray-100 rounded flex items-center justify-center mb-4">
+          <span className="text-3xl font-bold text-slate-400">
+            {product.name.charAt(0)}
+          </span>
+        </div>
+      )}
       <h3 className="text-lg font-bold mb-2">{product.name}</h3>
       <p className="text-green-600 font-semibold mb-2">
         ${product.price || 0}

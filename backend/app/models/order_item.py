@@ -14,6 +14,9 @@ class OrderItem(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
+    # Relationship with back_populates
+    product = db.relationship('Product', back_populates='order_items', lazy=True)
+
     def __repr__(self):
         return f'<OrderItem {self.id}>'
 

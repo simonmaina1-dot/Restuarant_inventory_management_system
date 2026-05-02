@@ -7,8 +7,8 @@ class Supplier(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False, unique=True)
-    contact_email = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.String(20), nullable=False)
+    contact_email = db.Column(db.String(120), nullable=False, default='')
+    phone = db.Column(db.String(20), nullable=False, default='')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -27,4 +27,3 @@ class Supplier(db.Model):
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }
-
